@@ -1,0 +1,261 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>test-dependabot</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>test-dependabot</name>
+    <description>Projet test</description>
+    <packaging>pom</packaging>
+
+	    <properties>
+        <java.version>17</java.version>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <spring-boot.version>2.7.5</spring-boot.version>
+        <testcontainer.version>1.17.5</testcontainer.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <jacoco.version>0.8.8</jacoco.version>
+        <openapitools-jackson.version>0.2.4</openapitools-jackson.version>
+        <springdoc-openapi-ui.version>1.6.12</springdoc-openapi-ui.version>
+        <swagger-parser.version>2.1.6</swagger-parser.version>
+        <archunit.version>1.0.0</archunit.version>
+        <maven-failsafe-plugin.version>3.0.0-M7</maven-failsafe-plugin.version>
+        <openapi-generator.version>6.2.0</openapi-generator.version>
+        <maven-pmd-plugin.version>3.19.0</maven-pmd-plugin.version>
+        <maven-surfire-plugin.version>2.22.2</maven-surfire-plugin.version>
+        <maven-sonar.version>3.9.1.2184</maven-sonar.version>
+        <mockito-junit-jupiter.version>4.6.1</mockito-junit-jupiter.version>
+        <junit-jupiter-engine.version>5.4.0</junit-jupiter-engine.version>
+        <assertj-core.version>3.23.1</assertj-core.version>
+        <spring-context.version>5.3.23</spring-context.version>
+        <common.version>2.7.5</common.version>
+        <woodstock.version>6.4.0</woodstock.version>
+        <pdfbox.version>2.0.27</pdfbox.version>
+        <spring-kafka.version>2.9.2</spring-kafka.version>
+        <spring-kafka-test.version>2.9.2</spring-kafka-test.version>
+        <spring-aop.version>2.7.5</spring-aop.version>
+        <kafka-log4j-appender.version>3.3.2</kafka-log4j-appender.version>
+        <embeddedmongo.version>4.3.3</embeddedmongo.version>
+        <apache.commons.compress.version>1.22</apache.commons.compress.version>
+        <dependency-check-maven.version>8.0.2</dependency-check-maven.version>
+        <snakeyaml.version>1.33</snakeyaml.version>
+        <azure-storage-blob.version>12.21.0</azure-storage-blob.version>
+        <azure-identity.version>1.8.0</azure-identity.version>
+        <aws-java-sdk.version>1.11.163</aws-java-sdk.version>
+        <xmlunit.version>2.9.1</xmlunit.version>
+        <bdd-dto.version>0.0.11-SNAPSHOT</bdd-dto.version>
+        <bus-dto.version>0.0.12-SNAPSHOT</bus-dto.version>
+    </properties>
+
+    <dependencies>
+        <!--spring -->
+     <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-autoconfigure</artifactId>
+                <version>${common.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter</artifactId>
+                <version>${common.version}</version>
+                <scope>compile</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-web</artifactId>
+                <version>${common.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.springframework.boot</groupId>
+                        <artifactId>spring-boot-starter-logging</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-log4j2</artifactId>
+                <version>${common.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-actuator</artifactId>
+                <version>${common.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-validation</artifactId>
+                <version>${common.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.kafka</groupId>
+                <artifactId>spring-kafka</artifactId>
+                <version>${spring-kafka.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-data-mongodb</artifactId>
+                <version>${common.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-batch</artifactId>
+                <version>${spring-batch.version}</version>
+            </dependency>
+            <dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-starter-aop</artifactId>
+				<version>${spring-aop.version}</version>
+		    </dependency>
+            <dependency>
+                <groupId>com.edokial.transverse</groupId>
+                <artifactId>bdd-dto</artifactId>
+                <version>${bdd-dto.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.edokial.transverse</groupId>
+                <artifactId>bus-dto</artifactId>
+                <version>${bus-dto.version}</version>
+            </dependency>
+
+            <!-- Fix temporaire d'une CVE sur la version 1.30 embarquée par Spring boot -->
+            <dependency>
+                <groupId>org.yaml</groupId>
+                <artifactId>snakeyaml</artifactId>
+                <version>${snakeyaml.version}</version>
+            </dependency>
+
+            <!-- dépendances S3-->
+            <!-- Microsoft Azure-->
+            <dependency>
+                <groupId>com.azure</groupId>
+                <artifactId>azure-storage-blob</artifactId>
+                <version>${azure-storage-blob.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.azure</groupId>
+                <artifactId>azure-identity</artifactId>
+                <version>${azure-identity.version}</version>
+            </dependency>
+
+            <!-- AWS S3 -->
+            <dependency>
+                <groupId>com.amazonaws</groupId>
+                <artifactId>aws-java-sdk</artifactId>
+                <version>${aws-java-sdk.version}</version>
+            </dependency>
+
+
+            <!-- dépendance génération openapi + springdoc-->
+            <dependency>
+                <groupId>org.springdoc</groupId>
+                <artifactId>springdoc-openapi-ui</artifactId>
+                <version>${springdoc-openapi-ui.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.openapitools</groupId>
+                <artifactId>jackson-databind-nullable</artifactId>
+                <version>${openapitools-jackson.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.swagger.parser.v3</groupId>
+                <artifactId>swagger-parser</artifactId>
+                <version>${swagger-parser.version}</version>
+            </dependency>
+
+            <!-- PDFBox -->
+            <dependency>
+                <groupId>org.apache.pdfbox</groupId>
+                <artifactId>pdfbox</artifactId>
+                <version>${pdfbox.version}</version>
+            </dependency>
+
+            <!-- test -->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-test</artifactId>
+                <version>${common.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.tngtech.archunit</groupId>
+                <artifactId>archunit</artifactId>
+                <version>${archunit.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.assertj</groupId>
+                <artifactId>assertj-core</artifactId>
+                <version>${assertj-core.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.assertj</groupId>
+                <artifactId>assertj-joda-time</artifactId>
+                <!-- use 1.1.0 for Java 7 projects -->
+                <version>2.2.0</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.mockito</groupId>
+                <artifactId>mockito-junit-jupiter</artifactId>
+                <version>${mockito-junit-jupiter.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.kafka</groupId>
+                <artifactId>spring-kafka-test</artifactId>
+                <version>${spring-kafka-test.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>de.flapdoodle.embed</groupId>
+                <artifactId>de.flapdoodle.embed.mongo</artifactId>
+                <version>${embeddedmongo.version}</version>
+                <scope>test</scope>
+            </dependency>
+
+            <!-- Dependances tests local -->
+            <dependency>
+                <groupId>org.testcontainers</groupId>
+                <artifactId>testcontainers</artifactId>
+                <version>${testcontainer.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.testcontainers</groupId>
+                <artifactId>junit-jupiter</artifactId>
+                <version>${testcontainer.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.junit.jupiter</groupId>
+                <artifactId>junit-jupiter</artifactId>
+                <version>${junit-jupiter-engine.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.testcontainers</groupId>
+                <artifactId>kafka</artifactId>
+                <version>${testcontainer.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.testcontainers</groupId>
+                <artifactId>mongodb</artifactId>
+                <version>${testcontainer.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-compress</artifactId>
+                <version>${apache.commons.compress.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.woodstox</groupId>
+                <artifactId>woodstox-core</artifactId>
+                <version>${woodstock.version}</version>
+            </dependency>
+    </dependencies>
+</project>
